@@ -1,7 +1,8 @@
 // server.js
 
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/beer_api");
+var mongoURI = process.env.MONGODB_URI || "mongodb://localhost/beer_api";
+mongoose.connect(mongoURI);
 
 var Beer = require("./app/model/beer");
 
