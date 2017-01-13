@@ -18,8 +18,7 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 // set up a variable to hold our model here...
-
-var port = process.env.PORT || 8080;        // set our port
+       // set our port
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -103,5 +102,4 @@ app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Beer is being served on port ' + port);
+app.listen(process.env.PORT || 3000);
