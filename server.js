@@ -73,33 +73,23 @@ router.route('/beers/:name')
   // update
   .put(function(req, res) {
     // code here
-    Beer.findOneAndUpdate({name: req.body.name}, function(err, beer) {
-
-            if (err)
-                res.send(err);
-
-            // save the bear
-            beer.save(function(err) {
-                if (err)
-                    res.send(err);
-
-                res.json({ message: 'Beer updated!' });
-            });
-
-        });
+    Beer.findOneAndUpdate(req.params.name, req.body.beer).then((beer) => {
+      res.json({ message: 'Successfully Updated' });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   })
 
   // destroy
   .delete(function(req, res) {
     // code here
-    Beer.remove({
-            _name: req.body.name
-        }, function(err, beer) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Successfully deleted' });
-        });
+    Beer.findOneAndRemove(req.params.name, req.body.beer).then((beer) => {
+      res.json({ message: 'Successfully Deleted' });
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   });
 
 // View all routes
